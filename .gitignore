@@ -1,0 +1,15 @@
+# --- Ignorar do Python ---
+venv/
+__pycache__/
+*.pyc
+
+# --- Ignorar da Unity ---
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+Logs/
+UserSettings/
+*.csproj
+*.sln
