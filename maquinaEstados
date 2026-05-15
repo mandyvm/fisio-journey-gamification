@@ -1,0 +1,29 @@
+stateDiagram-v2
+    %% Definição de Estilo
+    classDef repouso fill:#f9f9f9,stroke:#333,stroke-width:2px;
+    classDef acao fill:#e1f5fe,stroke:#0288d1,stroke-width:2px;
+    classDef avaliacao fill:#fff3e0,stroke:#f57c00,stroke-width:2px;
+
+    [*] --> REPOUSO : Início do Exercício
+    
+    REPOUSO --> EXTENSAO : Paciente inicia a extensão da perna
+    
+    state EXTENSAO {
+        [*] --> BuscandoAlvo
+        BuscandoAlvo --> ColisaoRegistrada : Pé atinge a bolinha
+        %% Nota: O feedback de acerto só acontece na volta, 
+        %% aqui nós apenas "salvamos" na memória que ele alcançou.
+    }
+    
+    EXTENSAO --> AVALIACAO : Paciente retorna a perna (Flexão)
+    
+    state AVALIACAO {
+        state "Checagem de Condição" as if_state <<choice>>
+        [*] --> if_state
+        
+        if_state --> ACERTO : Flag de Colisão = TRUE
+        if_state --> ERRO : Flag de Colisão = FALSE
+    }
+    
+    ACERTO --> REPOUSO : Feedback Positivo (Brilho + Frase) \n Atualiza Placar
+    ERRO --> REPOUSO : Feedback Negativo (Bola some) \n Registra Falha
